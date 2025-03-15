@@ -27,7 +27,7 @@ public:
         _data = (_cap > 0) ? new T[_cap]() : nullptr;
     }
     XVec(std::initializer_list<T> init_list) : _size(init_list.size()), _cap(init_list.size()) {
-        _data = new T[_cap];
+        _data = new T[_cap]();
         unsigned __int64 index = 0;
         for (auto value : init_list) {
             if (index < _size) {
@@ -46,7 +46,13 @@ public:
         other._size = 0;
         other._cap = 0;
     }
-    ~XVec() { delete[] _data; }
+    ~XVec() {
+        for (unsigned __int64 i = 0; i < size(); ++i) {
+            _data[i] = 0;
+        }
+        delete[] _data; 
+        _data = nullptr;
+    }
 
     // Operator overloads
     XVec operator+(const XVec other) {
