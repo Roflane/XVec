@@ -48,7 +48,7 @@ public:
     }
     ~XVec() {
         for (unsigned __int64 i = 0; i < size(); ++i) {
-            _data[i] = 0;
+            _data[i] = (T)0;
         }
         delete[] _data; 
         _data = nullptr;
