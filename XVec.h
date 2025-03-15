@@ -26,6 +26,15 @@ public:
     XVec(unsigned __int64 size) : _size(size), _cap(size) {
         _data = (_cap > 0) ? new T[_cap]() : nullptr;
     }
+    XVec(std::initializer_list<T> init_list) : _size(init_list.size()), _cap(init_list.size()) {
+        _data = new T[_cap];
+        unsigned __int64 index = 0;
+        for (auto value : init_list) {
+            if (index < _size) {
+                _data[index++] = value;
+            }
+        }
+    }
     XVec(const XVec& other) : _size(other._size), _cap(other._cap) {
         _data = new T[_cap]();
         for (unsigned __int64 i = 0; i < _size; ++i) {
