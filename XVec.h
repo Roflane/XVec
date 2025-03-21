@@ -22,7 +22,7 @@ private:
         _cap = newCap;
     }
 public:
-    XVec() : _data(nullptr), _size(1), _cap(1) {}
+    XVec() : _data(nullptr), _size(0), _cap(0) {}
     XVec(unsigned __int64 size) : _size(size), _cap(size) {
         _data = (_cap > 0) ? new T[_cap]() : nullptr;
     }
